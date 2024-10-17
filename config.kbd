@@ -13,6 +13,7 @@
 )
 
 (defsrc
+            1   2
                     e               u   i   o
   caps      a   s   d   f           j   k   l   ;
                                     n   m   ,
@@ -27,7 +28,7 @@
   hold-time-ring 165
   hold-time-middle 155
   hold-time-index 150
-  hold-time-numpadd 200
+  hold-time-switch-layer 250
 
   left-hand-keys (
     q w e r t
@@ -42,18 +43,21 @@
   )
 )
 (deflayer base
+            @tbl @tnl
                     @e      u   i   o
   esc       @a  @s  @d  @f  @j  @k  @l  @;
                             n   m   ,
 )
 
 (deflayer nomods
+            @tbl @tnl
                     e       u   i   o
   esc       a   s   d   f   j   k   l   ;
                             n   m   ,
 )
 
 (deflayer numpadd
+            _   _
                     _       7   8   9
   esc       _   _   _   _   4   5   6   0
                             1   2   3
@@ -78,4 +82,7 @@
   ; (tap-hold-release-keys $tap-time $hold-time-index (multi ; @tap) rmet $right-hand-keys)
 
   e (tap-hold-release-keys $tap-time $hold-time-index (multi e @tap) (layer-while-held numpadd) $left-hand-keys)
+
+  tbl (tap-hold-release-keys $tap-time $hold-time-switch-layer (multi 1 @tap) (layer-switch base) $left-hand-keys)
+  tnl (tap-hold-release-keys $tap-time $hold-time-switch-layer (multi 2 @tap) (layer-switch nomods) $left-hand-keys)
 )
